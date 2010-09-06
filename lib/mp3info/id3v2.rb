@@ -325,21 +325,21 @@ class ID3v2 < DelegateClass(Hash)
     case name
       when /^COM/
         #FIXME improve this
-	encoding, lang, str = raw_value.unpack("ca3a*") 
-	out = raw_value.split(0.chr).last
+      	encoding, lang, str = raw_value.unpack("ca3a*") 
+      	out = raw_value.split(0.chr).last
       when /^T/
-	encoding = raw_value.getbyte(0) # language encoding (see TEXT_ENCODINGS constant)
-	out = raw_value[1..-1] 
-	# we need to convert the string in order to match
-	# the requested encoding
-	if encoding && TEXT_ENCODINGS[encoding] && out && encoding != @text_encoding_index
-	  begin
-	    out = Iconv.iconv(@options[:encoding], TEXT_ENCODINGS[encoding], out).first
-	  rescue Iconv::Failure
-	  end
-	end
+      	encoding = raw_value.getbyte(0) # language encoding (see TEXT_ENCODINGS constant)   
+      	out = raw_value[1..-1] 
+      	# we need to convert the string in order to match
+      	# the requested encoding
+      	if encoding && TEXT_ENCODINGS[encoding] && out && encoding != @text_encoding_index
+      	  begin
+      	    out = Iconv.iconv(@options[:encoding], TEXT_ENCODINGS[encoding], out).first
+      	  rescue Iconv::Failure
+      	  end
+      	end
         # remove padding zeros for textual tags
-        out.sub!(/\0*$/, '')
+        out.sub!(/\0*$/, '') if out
         return out
       else
         return raw_value
