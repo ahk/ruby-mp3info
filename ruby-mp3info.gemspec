@@ -4,7 +4,7 @@ require "mp3info/version"
 
 Gem::Specification.new do |s|
   s.name        = "ruby-mp3info"
-  s.version     = Mp3info::VERSION
+  s.version     = Mp3Info::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Guillaume Pierronnet", 'Andrew Hay Kurtz']
   s.email       = "andrew.hay.kurtz@gmail.com"
