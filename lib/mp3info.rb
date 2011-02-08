@@ -7,6 +7,7 @@
 require "fileutils"
 require "mp3info/extension_modules"
 require "mp3info/id3v2"
+require "mp3info/version"
 
 # ruby -d to display debugging infos
 
@@ -17,8 +18,6 @@ class Mp3InfoInternalError < StandardError #:nodoc:
 end
 
 class Mp3Info
-
-  VERSION = "0.6.13"
 
   LAYER = [ nil, 3, 2, 1]
   BITRATE = {
